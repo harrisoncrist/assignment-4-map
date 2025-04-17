@@ -1,0 +1,29 @@
+body {
+    font-family: Noto Sans, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    margin: 10px;
+}
+
+#map_container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 20px;
+}
+
+#map_left {
+    width: 400px;
+    height: 600px;
+    background-color: gray;
+    margin: 20px;
+    display: flex;
+}
+
+#map_right {
+    width: 400px;
+    height: 600px;
+    background-color: blue;
+    display: flex;
+}
