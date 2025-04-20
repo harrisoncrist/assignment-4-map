@@ -27,11 +27,23 @@ body {
 
 }
 
+#buttons {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
 #sidebar {
     width: 348px;
     font-size: 0.9rem;
     overflow-y: scroll;
     box-sizing: border-box;
+    padding-right: 15px;
 }
 
 #map_right {
