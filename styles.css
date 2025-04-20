@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: Noto Sans, sans-serif;
+    font-family: 'Lucida Console', monospace;
     background-color: #fff7f4;
     color: black;
     margin: 0;
@@ -27,16 +27,7 @@ body {
 
 }
 
-#buttons {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 2;
-    background: white;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
+
 
 #sidebar {
     width: 348px;
@@ -56,8 +47,9 @@ body {
 .masthead {
     width: 100%;
     font-family: 'Lato', sans-serif;
-    font-weight: 700;
+    font-weight: 300;
     letter-spacing: 3px;
+    padding-left: 10px;
 }
 
 .masthead_links {
@@ -66,8 +58,35 @@ body {
     height: 30px;
     align-items: center;
     display: flex;
-    width: 100%;
     padding-left: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     justify-content: space-between;
+}
+
+.masthead_links_cluster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link{
+    display: flex;
+    border-left: 1px solid black ;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+    align-items: center;
+
+}
+
+#buttons {
+    position: absolute;
+    font-family: 'Lato', sans-serif;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
