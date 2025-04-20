@@ -22,12 +22,13 @@ body {
     flex-grow: 1;
     display: flex;
     min-height: 0;
+    padding: 1rem;
+
 
 }
 
 #sidebar {
     width: 348px;
-    padding: 1rem;
     font-size: 0.9rem;
     overflow-y: scroll;
     box-sizing: border-box;
@@ -37,10 +38,14 @@ body {
     height: 500px;
     flex-grow: 1;
     width: 200px;
+    border-radius: 16px;
 }
 
 .masthead {
     width: 100%;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
 .masthead_links {
@@ -52,4 +57,5 @@ body {
     width: 100%;
     padding-left: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    justify-content: space-between;
 }
