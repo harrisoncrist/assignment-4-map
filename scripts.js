@@ -4,12 +4,10 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWhjcmlzdCIsImEiOiJjbTkyMGNvYTkwMHM2MmxuM2Zve
 const map_right = new mapboxgl.Map({
 	container: 'map_right', // container ID
 	style: 'mapbox://styles/mapbox/light-v11', // Light style
-	center: [-73.99530, 40.74676], // starting position [lng, lat]
-	zoom: 8, // starting zoom
 	maxBounds: [
-		[-74.65801, 40.48017],
-		[-73.46734, 41.08823]
-	] // max bounds
+		[-74.46117, 40.41636],
+		[-73.54665, 40.96686]
+	]// max bounds
 });
 
 //load the map
