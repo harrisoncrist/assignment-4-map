@@ -37,7 +37,8 @@
                 <p>Toggle between the two years to see the map.</p>
                 <p>This sidebar will scroll if its content becomes longer than the map.</p>
                 <div id="info-box" class="info-box hidden">
-                    <h3 id="neighborhood-name">Neighborhood Name</h3>
+                    <h3><strong>Census Tract Neighborhood:</strong> <span id="neighborhood-name">Neighborhood
+                            Name</span></h3>
                     <p><strong>Average Loan Value (2018):</strong> <span id="avg-loan-2018">$MONEY</span></p>
                     <p><strong>Average Loan Value (2023):</strong> <span id="avg-loan-2023">$MONEY</span></p>
 
@@ -45,7 +46,14 @@
                 </div>
             </div>
             <div id="map_container">
+
+
                 <div id="map_right">
+                    <div id="intro-overlay">
+                        <div class="intro-content">
+                            <p>Select a year to get started</p>
+                        </div>
+                    </div>
                     <div id="buttons">
                         <button id="btn-loan-2018">Show 2018</button>
                         <button id="btn-loan-2023">Show 2023</button>

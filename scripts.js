@@ -59,6 +59,17 @@ map_right.on('load', () => {
 		}
 	});
 
+	document.getElementById('btn-loan-2018').addEventListener('click', () => {
+		showLayer('layer_2018'); 
+		document.getElementById('intro-overlay').style.display = 'none';
+	  });
+	  
+	  document.getElementById('btn-loan-2023').addEventListener('click', () => {
+		showLayer('layer_2023'); 
+		document.getElementById('intro-overlay').style.display = 'none';
+	  });
+	
+
 	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('layer_2018'));
 	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('layer_2023'));
 
