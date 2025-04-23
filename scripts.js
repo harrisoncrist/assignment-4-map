@@ -73,10 +73,17 @@ map_right.on('load', () => {
 	}
 })
 
-map_right.on('click', ['layer_2023', 'layer_2018'],(e) => {
+map_right.on('click', ['layer_2023', 'layer_2018'], (e) => {
 	const features = map_right.queryRenderedFeatures(e.point, {
 		layers: ['layer_2023', 'layer_2018']
-	})
+});
 
-	console.log(features)
-})
+if (!features.length) return;
+const props = features[0].properties;
+
+document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
+document.getElementById('avg-loan-2018').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2018 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
+document.getElementById('avg-loan-2023').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2023 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
+/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
+document.getElementById('info-box').classList.remove('hidden');
+});
