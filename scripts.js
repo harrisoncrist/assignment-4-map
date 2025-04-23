@@ -16,16 +16,16 @@ map_right.on('load', () => {
 	//add geojson source
 	map_right.addSource('ct_boundaries', {
 		type: 'geojson',
-		data: './hdma_ct_boundaries_nyc.geojson'
+		data: './A_hdma_acs_18_23.geojson',
 	})
 
 	//add 2023 layer source
 	map_right.addLayer({
-		id: 'loan_value_chloro_2023',
+		id: 'layer_2023',
 		type: 'fill',
 		source: 'ct_boundaries',
 		paint: {
-			'fill-color': ['interpolate', ['linear'], ['to-number', ['get', 'hmda_join_2018_2023_mean_loan_ct_2023']], //convert mean loan amount to a number by ct for 2023
+			'fill-color': ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'],
 				0, '#ff0000',     // Red
 				25, '#ff8000',    // Orange
 				50, '#ffff00',    // Yellow
@@ -41,11 +41,11 @@ map_right.on('load', () => {
 
 	//add 2018 layer 
 	map_right.addLayer({
-		id: 'loan_value_chloro_2018',
+		id: 'layer_2018',
 		type: 'fill',
 		source: 'ct_boundaries',
 		paint: {
-			'fill-color': ['interpolate', ['linear'], ['to-number', ['get', 'hmda_join_2018_2023_mean_loan_ct_2018']], //convert mean loan amount to a number by ct for 2018
+			'fill-color': ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2018'],
 				0, '#ff0000',     // Red
 				25, '#ff8000',    // Orange
 				50, '#ffff00',    // Yellow
@@ -59,16 +59,24 @@ map_right.on('load', () => {
 		}
 	});
 
-	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('loan_value_chloro_2018'));
-	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('loan_value_chloro_2023'));
+	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('layer_2018'));
+	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('layer_2023'));
 
-	function showLayer(layerShow) {
-		const layers = ['loan_value_chloro_2023', 'loan_value_chloro_2018'];
+	function showLayer(layer_to_show) {
+		const layers = ['layer_2023', 'layer_2018'];
 		layers.forEach(layer => {
-			const visibility = (layer === layerShow) ? 'visible' : 'none';
+			const visibility = (layer === layer_to_show) ? 'visible' : 'none';
 			if (map_right.getLayer(layer)) {
 				map_right.setLayoutProperty(layer, 'visibility', visibility);
 			}
 		});
 	}
+})
+
+map_right.on('click', ['layer_2023', 'layer_2018'],(e) => {
+	const features = map_right.queryRenderedFeatures(e.point, {
+		layers: ['layer_2023', 'layer_2018']
+	})
+
+	console.log(features)
 })
