@@ -56,7 +56,6 @@ body {
     align-items: center;
     overflow: hidden;
     flex-shrink: 4;
-    background-color: lightgray;
 }
 
 h1 {

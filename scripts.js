@@ -4,10 +4,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWhjcmlzdCIsImEiOiJjbTkyMGNvYTkwMHM2MmxuM2Zve
 const map_right = new mapboxgl.Map({
 	container: 'map_right', // container ID
 	style: 'mapbox://styles/mapbox/light-v11', // Light style
+	center:[-73.97996, 60.69785],
+	zoom: 7,
 	maxBounds: [
-		[-74.46117, 40.41636],
-		[-73.54665, 40.96686]
-	]// max bounds
+    [-74.81247, 40.42274], 
+    [-73.55013, 40.94901]
+]// max bounds
 });
 
 //load the map
@@ -60,15 +62,15 @@ map_right.on('load', () => {
 	});
 
 	document.getElementById('btn-loan-2018').addEventListener('click', () => {
-		showLayer('layer_2018'); 
+		showLayer('layer_2018');
 		document.getElementById('intro-overlay').style.display = 'none';
-	  });
-	  
-	  document.getElementById('btn-loan-2023').addEventListener('click', () => {
-		showLayer('layer_2023'); 
+	});
+
+	document.getElementById('btn-loan-2023').addEventListener('click', () => {
+		showLayer('layer_2023');
 		document.getElementById('intro-overlay').style.display = 'none';
-	  });
-	
+	});
+
 
 	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('layer_2018'));
 	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('layer_2023'));
@@ -87,14 +89,14 @@ map_right.on('load', () => {
 map_right.on('click', ['layer_2023', 'layer_2018'], (e) => {
 	const features = map_right.queryRenderedFeatures(e.point, {
 		layers: ['layer_2023', 'layer_2018']
-});
+	});
 
-if (!features.length) return;
-const props = features[0].properties;
+	if (!features.length) return;
+	const props = features[0].properties;
 
-document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
-document.getElementById('avg-loan-2018').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2018 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
-document.getElementById('avg-loan-2023').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2023 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
-/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
-document.getElementById('info-box').classList.remove('hidden');
+	document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
+	document.getElementById('avg-loan-2018').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2018 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
+	document.getElementById('avg-loan-2023').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2023 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
+	/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
+	document.getElementById('info-box').classList.remove('hidden');
 });
