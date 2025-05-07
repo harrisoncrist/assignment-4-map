@@ -1,6 +1,12 @@
+html, body {
+    height: 100%;
+}
+
 #main-container {
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
@@ -11,51 +17,38 @@ body {
     padding: 0;
 }
 
-#main-container {
+
+#content-container {
+    flex-grow: 1;
     display: flex;
-    flex-direction: column;
+    min-height: 0;
+    padding-top: 30px;
+}
+
+#map_one_container {
+    flex-grow: 1;
+    width: 100%;
+    height: auto;
+}
+
+#map_one_frame {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
 
-#content-container {
-    flex-grow: 1;
-    display: row;
-    min-height: 0;
-}
-
-#sidebar {
-    max-width: 500px;
-    font-size: 0.9rem;
-    overflow-y: scroll;
-    box-sizing: border-box;
-    padding-right: 15px;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-
-}
-
-#map_one_container {
-    height: 500px;
-    flex-grow: 1;
-    width: 100%;
-}
-
-#intro-overlay {
+/* #intro-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    /* semi-transparent shade */
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 50;
-    /* make sure it's above the map */
 }
 
 .intro-content {
@@ -73,7 +66,7 @@ body {
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-weight: 100;
-}
+} */
 
 #map_two_container {
     height: 500px;
@@ -81,12 +74,7 @@ body {
     width: 100%;
 }
 
-#map_one_frame {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
 
-}
 
 #map_two_frame {
     width: 100%;
@@ -97,19 +85,23 @@ body {
 
 .masthead {
     width: 100%;
-    height: 2%;
-    padding-left: 10px;
+    height: auto;
+    padding-right: 10px;
     display: flex;
     align-items: center;
     overflow: hidden;
     flex-shrink: 4;
-}
-
-h1 {
-    margin-top: 30px;
-    margin-bottom: 6px;
+    background-color: black;
 
 }
+
+ h1 {
+    padding: 10px;
+margin: 0px; 
+color: white;
+font-family: 'Lato', sans-serif;
+
+} 
 
 h2 {
     margin-bottom: 30px;
@@ -120,7 +112,7 @@ h2 {
 .masthead_links {
     border-bottom: 1px solid #000;
     border-top: 1px solid #000;
-    height: 30px;
+    height: 3%;
     align-items: center;
     display: flex;
     padding-left: 10px;
@@ -135,6 +127,8 @@ h2 {
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    height: 100%;
+
 
 }
 
@@ -143,7 +137,7 @@ h2 {
     border-left: 1px solid black;
     padding-left: 10px;
     padding-right: 10px;
-    height: 30px;
+    height: 100%;
     align-items: center;
 
 }
@@ -152,12 +146,12 @@ h2 {
     position: absolute;
     font-family: 'Courier New', Courier, monospace;
     top: 10px;
-    left: 20px;
-    z-index: 999;
+    left: 320px;
+    z-index: 900;
     padding: 10px;
     border-radius: 10px;
     background-color: white;
-   
+
 }
 
 #btn-loan-2018 {
@@ -177,7 +171,7 @@ h2 {
     opacity: 0.6;
     border-radius: 10px;
     touch-action: manipulation;
-    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
     user-select: none;
     -webkit-user-select: none;
     width: auto;
@@ -207,7 +201,7 @@ h2 {
     opacity: 0.6;
     border-radius: 10px;
     touch-action: manipulation;
-    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
     user-select: none;
     -webkit-user-select: none;
     width: auto;
@@ -234,19 +228,38 @@ h2 {
     border-width: 5px;
 }
 
+#sidebar {
+    position: absolute;
+    height: 100%;
+    color: white;
+    max-width: 300px;
+    font-size: .8rem;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding-right: 15px;
+    justify-content: left;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    z-index: 999;
+    background-color: blue;
+    z-index: 900;
+    padding: 10px;
+    opacity: .7;;
+}
+
 .info-box {
     position: absolute;
-    bottom: -80px;
-    left: 20px;
+    top: 80px;
+    left: 320px;
     border-radius: 10px;
-    padding: 16px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    padding: 10px;
     font-size: 14px;
     max-width: 250px;
-    z-index: 10;
+    z-index: 999;
     background-color: lightgrey;
-    opacity: .8;
-    
+    opacity: .9;
+
 }
 
 .info-box.hidden {
@@ -263,3 +276,21 @@ h2 {
     margin: 4px 0;
 }
 
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  .close-btn:hover {
+    color: #000;
+  }
+  .hidden {
+    display: none;
+  }

@@ -2,19 +2,18 @@
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWhjcmlzdCIsImEiOiJjbTkyMGNvYTkwMHM2MmxuM2ZveGE0cHMyIn0.cETUTrGOPhzETUiIkdsXdg';
 const bounds = [
-
-	[-75.39440, 40.12631],
-	[-72.93263, 41.25213]
+	[-74.67252, 40.45470],
+	[-73.42330, 41.09414]
 ];
 
 // Create map_one_frame, which is an option bw 2018 and 2023 average loan values
 
 const map_one_frame = new mapboxgl.Map({
 	container: 'map_one_frame', // container ID
-	style: 'mapbox://styles/mapbox/dark-v11', // dark style
-	cooperativeGestures: true,
+	style: 'mapbox://styles/mapbox/light-v11', // dark style
+	//cooperativeGestures: true,
 	zoom: 9,
-	center: [-73.99932, 40.71125],
+	center: [-74.17723, 40.70818],
 	maxBounds: bounds
 });
 
@@ -28,7 +27,7 @@ map_one_frame.on('load', () => {
 	})
 	//disable scroll zoom on map_one_frame
 	//map_one_frame.scrollZoom.disable();
-	map_one_frame.addControl(new mapboxgl.FullscreenControl());
+	//map_one_frame.addControl(new mapboxgl.FullscreenControl());
 
 	//add 2023 layer source
 	map_one_frame.addLayer({
@@ -36,15 +35,16 @@ map_one_frame.on('load', () => {
 		type: 'fill',
 		source: 'ct_boundaries',
 		paint: {
-			'fill-color': ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'],
-				281000, '#ff0000',     // Red
-				411667, '#ff8000',    // Orange
-				535000, '#ffff00',    // Yellow
-				725000, '#80ff00',    // Yellow-Green
-				1165000, '#00ff00',  // Green
-				2005000, 'blue'],
-			'fill-opacity': 0.6,
-			'fill-outline-color': 'rgba(0, 0, 0, 0)'
+			'fill-color': [
+				'case',
+				['==', ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'], null], 'transparent', ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'],
+					281000, 'rgb(234,209,150)',     // 6 colors: beige
+					411667, 'rgb(212,169,122)',    // 
+					535000, 'rgb(190,129,94)',    // 
+					725000, 'rgb(169,90,66)',    // 
+					1165000, 'rgb(147,50,38)',  // 
+					2005000, 'rgb(125,10,10)']],	//red
+			'fill-outline-color': 'transparent'
 		},
 		layout: {
 			visibility: 'none'
@@ -57,34 +57,22 @@ map_one_frame.on('load', () => {
 		type: 'fill',
 		source: 'ct_boundaries',
 		paint: {
-			'fill-color': ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2018'],
-				281000, '#ff0000',     // Red
-				411667, '#ff8000',    // Orange
-				535000, '#ffff00',    // Yellow
-				725000, '#80ff00',    // Yellow-Green
-				1165000, '#00ff00',  // Green
-				2005000, 'blue'],
-			'fill-opacity': 0.6,
-			'fill-outline-color': 'rgba(0, 0, 0, 0)'
-		},
-		layout: {
-			visibility: 'none'
+			'fill-color': [
+				'case',
+				['==', ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'], null], 'transparent', ['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2018'],
+					281000, 'rgb(234,209,150)',     // 6 colors: beige
+					411667, 'rgb(212,169,122)',    // 
+					535000, 'rgb(190,129,94)',    // 
+					725000, 'rgb(169,90,66)',    // 
+					1165000, 'rgb(147,50,38)',  // 
+					2005000, 'rgb(125,10,10)']],	//red
+			'fill-outline-color': 'transparent'
 		}
+		// ,
+		// layout: {
+		// 	visibility: 'none'
+		// }
 	});
-
-	document.getElementById('btn-loan-2018').addEventListener('click', () => {
-		showLayer('layer_2018');
-		document.getElementById('intro-overlay').style.display = 'none';
-	});
-
-	document.getElementById('btn-loan-2023').addEventListener('click', () => {
-		showLayer('layer_2023');
-		document.getElementById('intro-overlay').style.display = 'none';
-	});
-
-
-	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('layer_2018'));
-	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('layer_2023'));
 
 	function showLayer(layer_to_show) {
 		const layers = ['layer_2023', 'layer_2018'];
@@ -95,21 +83,45 @@ map_one_frame.on('load', () => {
 			}
 		});
 	}
+
+	document.getElementById('btn-loan-2018').addEventListener('click', () => showLayer('layer_2018'));
+	document.getElementById('btn-loan-2023').addEventListener('click', () => showLayer('layer_2023'));
+
+
 })
 
-map_one_frame.on('click', ['layer_2023', 'layer_2018'], (e) => {
-	const features = map_one_frame.queryRenderedFeatures(e.point, {
-		layers: ['layer_2023', 'layer_2018']
+document.addEventListener('DOMContentLoaded', () => {
+	const closeBtn = document.getElementById('close-btn');
+	if (closeBtn) {
+		closeBtn.addEventListener('click', () => {
+			document.getElementById('info-box').classList.add('hidden');
+		});
+	}
+
+	map_one_frame.on('click', ['layer_2023', 'layer_2018'], (e) => {
+		const features = map_one_frame.queryRenderedFeatures(e.point, {
+			layers: ['layer_2023', 'layer_2018']
+		});
+
+		if (!features.length) return;
+		const props = features[0].properties;
+
+		const formatK = (num) => {
+			if (!num) return 'Data not available';
+			const rounded = Math.ceil(Number(num) / 1000); // Round up to nearest thousand
+			return `$${rounded}K`;
+		};
+		document.getElementById('info-box').classList.remove('hidden');
+
+		document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
+		document.getElementById('avg-loan-2018').textContent = formatK(props.B_download_acs_hdma_2018_2023_average_loan_2018)
+		document.getElementById('avg-loan-2023').textContent = formatK(props.B_download_acs_hdma_2018_2023_average_loan_2023)
+		// ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
+		// ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
+		/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
+
+
 	});
-
-	if (!features.length) return;
-	const props = features[0].properties;
-
-	document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
-	document.getElementById('avg-loan-2018').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2018 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
-	document.getElementById('avg-loan-2023').textContent = props.B_download_acs_hdma_2018_2023_average_loan_2023 ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
-	/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
-	document.getElementById('info-box').classList.remove('hidden');
 });
 
 
@@ -166,5 +178,5 @@ map_two_frame.on('load', () => {
 			});
 
 		});
-//add a info panel??
+	//add a info panel??
 });
