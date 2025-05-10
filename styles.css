@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -22,7 +23,6 @@ body {
     flex-grow: 1;
     display: flex;
     min-height: 0;
-    padding-top: 30px;
 }
 
 #map_one_container {
@@ -95,13 +95,13 @@ body {
 
 }
 
- h1 {
+h1 {
     padding: 10px;
-margin: 0px; 
-color: white;
-font-family: 'Lato', sans-serif;
+    margin: 0px;
+    color: white;
+    font-family: 'Lato', sans-serif;
 
-} 
+}
 
 h2 {
     margin-bottom: 30px;
@@ -117,7 +117,7 @@ h2 {
     display: flex;
     padding-left: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    justify-content: space-between;
+    justify-content: right;
     font-size: 12px;
 
 }
@@ -154,79 +154,33 @@ h2 {
 
 }
 
-#btn-loan-2018 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    letter-spacing: 2px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #000;
-    cursor: pointer;
-    border: 0px;
-    position: relative;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    background-color: transparent;
-    opacity: 0.6;
-    border-radius: 10px;
-    touch-action: manipulation;
-    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
-}
-
-#btn-loan-2018:active {
-    background-color: #F7F7F7;
-    border-color: black;
-    border-bottom: #000;
-    transform: scale(.96);
-}
-
-#btn-loan-2023 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    letter-spacing: 2px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #000;
-    cursor: pointer;
-    border: 0px;
-    position: relative;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    background-color: transparent;
-    opacity: 0.6;
-    border-radius: 10px;
-    touch-action: manipulation;
-    transition: box-shadow .2s, -ms-transform .1s, -webkit-transform .1s, transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
-
-}
-
-#btn-loan-2023:active {
-    background-color: #F7F7F7;
-    border-color: #000000;
-    transform: scale(.96);
-}
-
-#btn-loan-2023:hover {
-    background-color: #F7F7F7;
-    border-color: #000000;
-    border-bottom: #000;
-    border-width: 5px;
-}
+#btn-loan-2018 {}
 
 #btn-loan-2018:hover {
-    background-color: #F7F7F7;
-    border-color: #000000;
-    border-bottom: #000;
-    border-width: 5px;
+    text-decoration: underline;
 }
+
+#btn-loan-2018:active {}
+
+#btn-loan-2023 {}
+
+#btn-loan-2023:hover {
+    text-decoration: underline;
+
+}
+
+#btn-loan-2023:active {}
+
+#btn-delta-2018-2023 {}
+
+#btn-delta-2018-2023:hover {
+    text-decoration: underline;
+
+}
+
+#btn-delta-2018-2023:active {}
+
+
 
 #sidebar {
     position: absolute;
@@ -245,7 +199,8 @@ h2 {
     background-color: blue;
     z-index: 900;
     padding: 10px;
-    opacity: .7;;
+    opacity: .7;
+    ;
 }
 
 .info-box {
@@ -286,11 +241,12 @@ h2 {
     font-weight: bold;
     cursor: pointer;
     color: #333;
-  }
-  
-  .close-btn:hover {
+}
+
+.close-btn:hover {
     color: #000;
-  }
-  .hidden {
+}
+
+.hidden {
     display: none;
-  }
+}

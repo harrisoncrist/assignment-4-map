@@ -19,11 +19,10 @@
         </div>
 
         <div class="masthead_links">
-            <p>HOME</p>
             <div class="masthead_links_cluster">
-                <div class="link">Data</div>
-                <div class="link">Methods</div>
-                <div class="link">Etc.</div>
+                <a href="index.html" class = link>Home</a>
+                <a href="data.html" class = link>Data</a>
+                <a href="methods.html" class = link>Methods</a>
             </div>
         </div>
         <div id="content-container">
@@ -40,60 +39,25 @@
                     <div class="buttons">
                         <button id="btn-loan-2018">2018</button>
                         <button id="btn-loan-2023">2023</button>
+                        <button id="btn-delta-2018-2023">Delta</button>
+
                     </div>
                     <div id="sidebar">
-                        <p>The Home Mortgage Disclosure Act (HMDA) provides data on property purchases.
-                            This map shows the average loan values for each census tract in New York City for 2018 and
-                            2023.
+                        <p>How does value move through New York City? The answer to that question has consequences for 
+                            the entire urban fabric and the people who live wihtin it. We have plenty of concepts to think about it.
+                            Jane Jacobs writes about it in terms of cataclysmic money. David Harvey presents how it is wrapped up
+                            with the creation and destruction of a public commons. Merriman describes it in terms of value flows 
+                            being the very stuff of shaping the urban political economy. 
 
-                            Mortgage loans can be used to explore how values moves throughout the geography of a city.
-                            Referred
-                            to cataclysmics money, or money
-                            of various forms, you can see where value is pooling, creating margins and peripheries that
-                            can show
-                            what areas are up and down. Even more important, than
-                            absolute values, is the relative change in values from year to year. This type of data
-                            collects
-                            mortage data and puts it into action.
-                            The Home Mortgage Disclosure Act (HMDA) provides data on property purchases.
-                            This map shows the average loan values for each census tract in New York City for 2018 and
-                            2023.
+                            Thanks to these great urban thinkers and activists, we have several ways to conceptualize how value moves 
+                            through the city and an appreciation of its consequences. We seem to be lacking a good way to measure and visualize these dynamics. 
 
-                            Mortgage loans can be used to explore how values moves throughout the geography of a city.
-                            Referred
-                            to cataclysmics money, or money
-                            of various forms, you can see where value is pooling, creating margins and peripheries that
-                            can show
-                            what areas are up and down. Even more important, than
-                            absolute values, is the relative change in values from year to year. This type of data
-                            collects
-                            mortage data and puts it into action.
-                            The Home Mortgage Disclosure Act (HMDA) provides data on property purchases.
-                            This map shows the average loan values for each census tract in New York City for 2018 and
-                            2023.
+                            The Home Mortgage Disclosure Act (HMDA) provides one way to make inroads on this questtion. 
+                            The HDMA provides detailed data on mortgages, down to the census tract level, giving us access to a wealth of 
+                            data. Two points stand out as particularly useful for the question of how value moves through space - which is mortgage 
+                            values. The map on the right shows the average loan values by census tract for 2018 and 2023 where full data is available. 
 
-                            Mortgage loans can be used to explore how values moves throughout the geography of a city.
-                            Referred
-                            to cataclysmics money, or money
-                            of various forms, you can see where value is pooling, creating margins and peripheries that
-                            can show
-                            what areas are up and down. Even more important, than
-                            absolute values, is the relative change in values from year to year. This type of data
-                            collects
-                            mortage data and puts it into action.
-                            The Home Mortgage Disclosure Act (HMDA) provides data on property purchases.
-                            This map shows the average loan values for each census tract in New York City for 2018 and
-                            2023.
-
-                            Mortgage loans can be used to explore how values moves throughout the geography of a city.
-                            Referred
-                            to cataclysmics money, or money
-                            of various forms, you can see where value is pooling, creating margins and peripheries that
-                            can show
-                            what areas are up and down. Even more important, than
-                            absolute values, is the relative change in values from year to year. This type of data
-                            collects
-                            mortage data and puts it into action.
+                            
                         </p>
                         <p>Explore many ways in which mortgage value loans can be construted. Explore changing property
                             values
@@ -103,6 +67,10 @@
                     </div>
                     <div class="info-box hidden" id="info-box" >
                         <button class="close-btn" id="close-btn">&times;</button>
+                        <p>Borough</p>
+                        <h3>
+                            <span id="boro-name"></span>
+                        </h3>
                         <p>Neighborhood</p>
                         <h3>
                             <span id="neighborhood-name"></span>
@@ -116,8 +84,8 @@
                         <h3>
                             <span id="avg-loan-2023">$MONEY</span>
                         </h3>
-                        <p><strong>Average Property Value:</strong>
-                        <p><span id="avg-property">$MONEY</span></p>
+                        <!-- <p><strong>Average Property Value:</strong>
+                        <p><span id="avg-property">$MONEY</span></p> -->
                     </div>
                 </div>
             </div>
