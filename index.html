@@ -14,7 +14,7 @@
     <div id="main-container">
         <div class="masthead">
             <div>
-                <h1> Mortgage Loans in New York City</h1>
+                <h1>Loans Values in New York City</h1>
             </div>
         </div>
 
@@ -37,6 +37,7 @@
                         </div>
                     </div> -->
                     <div class="buttons">
+                        <h2>Map Options</h2>
                         <button id="btn-loan-2018">2018</button>
                         <button id="btn-loan-2023">2023</button>
                         <button id="btn-delta-2018-2023">Delta</button>
@@ -44,25 +45,39 @@
                     </div>
                     <div id="sidebar">
                         <p>
+                            <strong>This project leverages the Home Mortgage
+                                Disclosure Act (HMDA) dataset to visualize average home purchase loan values in New York City by census tract for 2018
+                                and 2023, and the percent change in average home purchase loan values between the two years.</strong> 
+                                <br>
+                               <p><em>Click through <span style="color: rgb(95,153,174)">Map Options </span>or read below to explore the map</em></p>
+                        </p>
+
+                        
+                        <hr class="short-break">
+                        <p>
                             Urban theorists and academics have shown the importance of understanding the movement of
-                            financial value in and around our cities. If there is too little value pooled in a
-                            neighborhood, it suffers from disinvestment and marginalization. On the other hand, too much
-                            financial value can undermine stability, accelerate displacement, and exploit collective
-                            social resources.
+                            financial value in and around our cities. If there is too little value in a
+                            neighborhood, it suffers from disinvestment and marginalization
+                            <a href=https://www.urban.org/research/publication/catalytic-capital-neighborhood-reinvestment
+                                target="_blank" rel="noopener noreferrer">[1]</a>.
+
+                            On the other hand, too much financial value can destroy cohesive neghborhoods
+                            <a href=https://www.thenewlocalism.com/newsletter/on-jane-jacobs-and-opportunity-zones/
+                                target="_blank" rel="noopener noreferrer">[2],</a>
+                            accelerate displacement
+                            <a href=https://www.enterprisecommunity.org/learning-center/resources/gentrification-comparison-tool
+                                target="_blank" rel="noopener noreferrer">[3],</a>
+                            and exploit collective social resources
+                            <a href=https://davidharvey.org/media/public.pdf target="_blank"
+                                rel="noopener noreferrer">[4]</a>.
                         </p>
                         <p>
                             Given these stakes, it is critical to develop ways to visualize the movement of financial
                             capital.
                         </p>
-                        <p>
-                            This project takes a step in this direction by leveraging the Home Mortgage Disclosure Act
-                            (HMDA) dataset, a rich source of mortgage lending data. The maps on the right visualize
-                            average home purchase loan values by census tract for 2018 and 2023, and the percent change
-                            in average home purchase loan values between the two years.
-                        </p>
-
                         <p> <button id="btn-loan-2018">2018</button>
                         </p>
+
 
                     </div>
                     <div class="info-box hidden" id="info-box">
@@ -84,8 +99,7 @@
                         <h3>
                             <span id="avg-loan-2023">$MONEY</span>
                         </h3>
-                        <!-- <p><strong>Average Property Value:</strong>
-                        <p><span id="avg-property">$MONEY</span></p> -->
+
                     </div>
                 </div>
             </div>

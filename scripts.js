@@ -115,7 +115,7 @@ map_one_frame.on('load', () => {
 							!isNaN(avgLoan2018) &&
 							!isNaN(avgLoan2023)
 						) {
-							feature.properties.difference = (avgLoan2023 - avgLoan2018)/avgLoan2018;
+							feature.properties.difference = avgLoan2023 - avgLoan2018;
 						}
 					});
 
@@ -133,7 +133,7 @@ map_one_frame.on('load', () => {
 						source: 'loan_value_difference_source',
 						filter: ['has', 'difference'],
 						paint: {
-							'fill-extrusion-height': ['*', ['get', 'difference'], 100], // scaled height
+							'fill-extrusion-height': ['*', ['get', 'difference'], .005], // scaled height
 							'fill-extrusion-base': 0,
 							'fill-extrusion-color': [
 								'case',
@@ -168,13 +168,6 @@ map_one_frame.on('load', () => {
 				map_one_frame.setPaintProperty(layer, opacityProp, isTarget ? 1 : 0);
 			}
 		});
-
-		// layers.forEach(layers => {
-		// 	const visibility = (layers === layer_to_show) ? 'visible' : 'none';
-		// 	if (map_one_frame.getLayer(layers)) {
-		// 		map_one_frame.setLayoutProperty(layers, 'visibility', visibility);
-		// 	}
-		// });
 	}
 
 	function setupInteractivity(layerId, sourceId = 'ct_boundaries') {

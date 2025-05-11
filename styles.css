@@ -25,6 +25,14 @@ body {
     min-height: 0;
 }
 
+#description-container {
+    margin: 0;
+    height: 600px;
+    display: flex;
+    justify-content: center; /* horizontally center */
+    align-items: center;;   
+}
+
 #map_one_container {
     flex-grow: 1;
     width: 100%;
@@ -37,11 +45,6 @@ body {
     overflow: hidden;
 }
 
-
-
-
-
-
 .masthead {
     width: 100%;
     height: auto;
@@ -50,7 +53,7 @@ body {
     align-items: center;
     overflow: hidden;
     flex-shrink: 4;
-    background-color: black;
+    background-color: rgb(95,153,174);
 
 }
 
@@ -62,11 +65,6 @@ h1 {
 
 }
 
-h2 {
-    margin-bottom: 30px;
-    margin-top: 6px;
-    font-weight: 100;
-}
 
 .masthead_links {
     
@@ -104,14 +102,20 @@ h2 {
 
 .buttons {
     position: absolute;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Lato', sans-serif;
     top: 10px;
     left: 320px;
     z-index: 900;
-    padding: 10px;
+    padding: 5px;
     border-radius: 10px;
-    background-color: white;
-
+    justify-content: space-between;
+}
+h2 {
+    font-weight: 600;
+    color: rgb(95,153,174);
+    text-align: center;
+    margin: 10px; 
+    font-size: 18px;
 }
 
 #btn-loan-2018 {}
@@ -165,6 +169,25 @@ h2 {
     border-width: .8px;
 }
 
+#middlebar {
+    height: 90%;
+    width: 60%;
+    color: black;
+    font-size: .8rem;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    justify-content: left;
+    line-height: 1.6;
+    z-index: 999;
+    background-color: #fff7f4;
+    opacity: .80;
+    border-radius: 10px;
+    padding: 10px;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
+}
+
 .info-box {
     position: absolute;
     top: 80px;
@@ -212,3 +235,11 @@ h2 {
 .hidden {
     display: none;
 }
+
+.short-break {
+    width: 88%;           /* Adjust to desired length (e.g., 200px or 50%) */
+    margin: 20px auto;    /* Center it horizontally */
+    border: none;
+    height: 1px;
+    background-color: gray;
+  }
