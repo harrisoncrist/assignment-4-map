@@ -38,50 +38,9 @@ body {
 }
 
 
-/* #intro-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 50;
-}
-
-.intro-content {
-    color: white;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 2rem;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.intro-content p {
-    font-family: 'Lato', sans-serif;
-    font-size: 16px;
-    font-weight: 100;
-} */
-
-#map_two_container {
-    height: 500px;
-    flex-grow: 1;
-    width: 100%;
-}
 
 
 
-#map_two_frame {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-}
 
 .masthead {
     width: 100%;
@@ -110,15 +69,16 @@ h2 {
 }
 
 .masthead_links {
-    border-bottom: 1px solid #000;
-    border-top: 1px solid #000;
+    
     height: 3%;
     align-items: center;
     display: flex;
     padding-left: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     justify-content: right;
     font-size: 12px;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
 
 }
 
@@ -134,7 +94,7 @@ h2 {
 
 .link {
     display: flex;
-    border-left: 1px solid black;
+    border-left: 1px solid gray;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
@@ -184,23 +144,25 @@ h2 {
 
 #sidebar {
     position: absolute;
-    height: 100%;
-    color: white;
+    color: black;
     max-width: 300px;
     font-size: .8rem;
     overflow-y: scroll;
     box-sizing: border-box;
-    padding-right: 15px;
     justify-content: left;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
     z-index: 999;
-    background-color: blue;
-    z-index: 900;
+    background-color: #fff7f4;
+    opacity: .80;
+    border-radius: 10px;
+    top: 10px;
+    left: 10px;
     padding: 10px;
-    opacity: .7;
-    ;
+    border-color: gray;
+    border-style: solid;
+    border-width: .8px;
 }
 
 .info-box {

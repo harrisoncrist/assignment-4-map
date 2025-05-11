@@ -50,14 +50,14 @@ map_one_frame.on('load', () => {
 						'case',
 						['==', ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'], null], 'transparent',
 						['boolean', ['feature-state', 'hover'], false], '#f7e0b6',
-						['boolean', ['feature-state', 'active'], false], '#ff9900',
+						['boolean', ['feature-state', 'active'], false], 'rgb(78,171,209)',
 						['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'],
-							281000, 'rgb(234,209,150)',     // 6 colors: beige
-							411667, 'rgb(212,169,122)',    // 
-							535000, 'rgb(190,129,94)',    // 
-							725000, 'rgb(169,90,66)',    // 
-							1165000, 'rgb(147,50,38)',  // 
-							2005000, 'rgb(125,10,10)']],	//red
+							450000, 'rgb(250,174,123)',     // FAAE7B
+							720000, 'rgb(218,144,122)',    // DA907A
+							1105000, 'rgb(186,115,120)',    // BA7378
+							1711000, 'rgb(154,85,119)',    // 9A5577
+							3185000, 'rgb(122,56,117)',  // 7A3875
+							4565000, 'rgb(90,26,116)']],	//5A1A74
 					'fill-opacity': 0,
 					'fill-outline-color': 'transparent',
 					'fill-opacity-transition': {
@@ -65,7 +65,6 @@ map_one_frame.on('load', () => {
 						delay: 0
 					}
 				}
-				// layout: { visibility: 'none' }
 			});
 
 			//add 2018 layer 
@@ -78,14 +77,14 @@ map_one_frame.on('load', () => {
 						'case',
 						['==', ['get', 'B_download_acs_hdma_2018_2023_average_loan_2023'], null], 'transparent',
 						['boolean', ['feature-state', 'hover'], false], '#f7e0b6',
-						['boolean', ['feature-state', 'active'], false], '#ff9900',
+						['boolean', ['feature-state', 'active'], false], 'rgb(78,171,209)',
 						['interpolate', ['linear'], ['get', 'B_download_acs_hdma_2018_2023_average_loan_2018'],
-							281000, 'rgb(234,209,150)',     // 6 colors: beige
-							411667, 'rgb(212,169,122)',    // 
-							535000, 'rgb(190,129,94)',    // 
-							725000, 'rgb(169,90,66)',    // 
-							1165000, 'rgb(147,50,38)',  // 
-							2005000, 'rgb(125,10,10)']],	//red
+							281000, 'rgb(250,174,123)',     // FAAE7B
+							411667, 'rgb(218,144,122)',    // DA907A
+							535000, 'rgb(186,115,120)',    // BA7378
+							725000, 'rgb(154,85,119)',    // 9A5577
+							1165000, 'rgb(122,56,117)',  // 7A3875
+							2005000, 'rgb(90,26,116)']],	//5A1A74
 					'fill-opacity': 1,
 					'fill-outline-color': 'transparent',
 					'fill-opacity-transition': {
@@ -116,7 +115,7 @@ map_one_frame.on('load', () => {
 							!isNaN(avgLoan2018) &&
 							!isNaN(avgLoan2023)
 						) {
-							feature.properties.difference = avgLoan2023 - avgLoan2018;
+							feature.properties.difference = (avgLoan2023 - avgLoan2018)/avgLoan2018;
 						}
 					});
 
@@ -134,13 +133,13 @@ map_one_frame.on('load', () => {
 						source: 'loan_value_difference_source',
 						filter: ['has', 'difference'],
 						paint: {
-							'fill-extrusion-height': ['*', ['get', 'difference'], 0.005], // scaled height
+							'fill-extrusion-height': ['*', ['get', 'difference'], 100], // scaled height
 							'fill-extrusion-base': 0,
 							'fill-extrusion-color': [
 								'case',
 								['boolean', ['feature-state', 'hover'], false], '#ffcc99',
 								['boolean', ['feature-state', 'active'], false], '#ff6600',
-								'red'
+								'rgb(122,56,117)'
 							],
 							'fill-extrusion-base': 0,
 							'fill-extrusion-opacity': 0,
@@ -208,16 +207,35 @@ map_one_frame.on('load', () => {
 
 	document.getElementById('btn-loan-2018').addEventListener('click', () => {
 		showLayer('layer_2018');
-		map_one_frame.setPitch(0);
+		map_one_frame.easeTo({
+			pitch: 0,
+			center: [-74.17723, 40.70818],
+			bearing: 0,
+			duration: 1000,
+			easing: t => t
+		});
 	});
 	document.getElementById('btn-loan-2023').addEventListener('click', () => {
 		showLayer('layer_2023');
-		map_one_frame.setPitch(0);
+		map_one_frame.easeTo({
+			pitch: 0,
+			center: [-74.17723, 40.70818],
+			bearing: 0,
+			duration: 1000,
+			easing: t => t
+		});
 	});
 
 	document.getElementById('btn-delta-2018-2023').addEventListener('click', () => {
 		showLayer('loan_value_difference_layer');
-		map_one_frame.setPitch(60);
+		map_one_frame.easeTo({
+			pitch: 60,
+			bearing: 0,
+			center: [-74.17723, 40.70818],
+			duration: 1000,
+			easing: t => t
+		});
+
 	})
 })
 
@@ -248,10 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById('neighborhood-name').textContent = props.NTAName || 'N/A';
 		document.getElementById('avg-loan-2018').textContent = formatK(props.B_download_acs_hdma_2018_2023_average_loan_2018)
 		document.getElementById('avg-loan-2023').textContent = formatK(props.B_download_acs_hdma_2018_2023_average_loan_2023)
-		// ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2023).toLocaleString()}` : 'N/A';
-		// ? `$${Number(props.B_download_acs_hdma_2018_2023_average_loan_2018).toLocaleString()}` : 'N/A';
-		/*document.getElementById('avg-property').textContent = props.avg_property_value ? `$${Number(props.avg_property_value).toLocaleString()}` : 'N/A';*/
 
 
 	});
+	//Create a histogram legend
+
+
 });
