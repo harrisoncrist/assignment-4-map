@@ -58,9 +58,14 @@ map_one_frame.on('load', () => {
 							725000, 'rgb(169,90,66)',    // 
 							1165000, 'rgb(147,50,38)',  // 
 							2005000, 'rgb(125,10,10)']],	//red
-					'fill-outline-color': 'transparent'
-				},
-				layout: { visibility: 'none' }
+					'fill-opacity': 0,
+					'fill-outline-color': 'transparent',
+					'fill-opacity-transition': {
+						duration: 500,
+						delay: 0
+					}
+				}
+				// layout: { visibility: 'none' }
 			});
 
 			//add 2018 layer 
@@ -81,7 +86,12 @@ map_one_frame.on('load', () => {
 							725000, 'rgb(169,90,66)',    // 
 							1165000, 'rgb(147,50,38)',  // 
 							2005000, 'rgb(125,10,10)']],	//red
-					'fill-outline-color': 'transparent'
+					'fill-opacity': 1,
+					'fill-outline-color': 'transparent',
+					'fill-opacity-transition': {
+						duration: 500,
+						delay: 0
+					}
 				}
 				// ,
 				// layout: {
@@ -133,9 +143,13 @@ map_one_frame.on('load', () => {
 								'red'
 							],
 							'fill-extrusion-base': 0,
-							'fill-extrusion-opacity': 0.6,
-						},
-						layout: { visibility: 'none' }
+							'fill-extrusion-opacity': 0,
+							'fill-extrusion-opacity-transition': {
+								duration: 500,
+								delay: 0
+							}
+						}
+						// layout: { visibility: 'none' }
 					});
 					setupInteractivity('layer_2023');
 					setupInteractivity('layer_2018');
@@ -147,12 +161,21 @@ map_one_frame.on('load', () => {
 
 	function showLayer(layer_to_show) {
 		const layers = ['layer_2023', 'layer_2018', 'loan_value_difference_layer'];
-		layers.forEach(layers => {
-			const visibility = (layers === layer_to_show) ? 'visible' : 'none';
-			if (map_one_frame.getLayer(layers)) {
-				map_one_frame.setLayoutProperty(layers, 'visibility', visibility);
+		layers.forEach(layer => {
+			if (map_one_frame.getLayer(layer)) {
+				const isTarget = layer === layer_to_show;
+				const opacityProp = layer === 'loan_value_difference_layer' ? 'fill-extrusion-opacity' : 'fill-opacity';
+
+				map_one_frame.setPaintProperty(layer, opacityProp, isTarget ? 1 : 0);
 			}
 		});
+
+		// layers.forEach(layers => {
+		// 	const visibility = (layers === layer_to_show) ? 'visible' : 'none';
+		// 	if (map_one_frame.getLayer(layers)) {
+		// 		map_one_frame.setLayoutProperty(layers, 'visibility', visibility);
+		// 	}
+		// });
 	}
 
 	function setupInteractivity(layerId, sourceId = 'ct_boundaries') {
